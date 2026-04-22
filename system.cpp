@@ -70,6 +70,17 @@ void BookstoreSystem::processCommand(const std::string& command) {
 
     const std::string& cmd = args[0];
 
+    // Check if it's a valid command
+    std::vector<std::string> validCommands = {
+        "quit", "exit", "su", "logout", "register", "passwd", "useradd", "delete",
+        "show", "buy", "select", "modify", "import", "log", "report"
+    };
+
+    if (std::find(validCommands.begin(), validCommands.end(), cmd) == validCommands.end()) {
+        // Not a valid command, ignore it (no output)
+        return;
+    }
+
     // Debug output
     // std::cerr << "DEBUG: Command: " << cmd << ", Args: " << args.size() << std::endl;
 
