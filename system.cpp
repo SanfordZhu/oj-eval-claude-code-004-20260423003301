@@ -190,9 +190,18 @@ void BookstoreSystem::handlePasswd(const std::vector<std::string>& args) {
     }
 
     int currentPriv = userManager.getCurrentPrivilege();
-    if (currentPriv < 7 && currentPassword.empty()) {
-        printInvalid();
-        return;
+
+    // If not root (priv 7), must provide current password
+    if (currentPriv < 7) {
+        if (currentPassword.empty()) {
+            printInvalid();
+            return;
+        }
+        // Verify current password is correct
+        if (!userManager.verifyPassword(args[1], currentPassword)) {
+            printInvalid();
+            return;
+        }
     }
 
     if (!userManager.changePassword(args[1], newPassword)) {
