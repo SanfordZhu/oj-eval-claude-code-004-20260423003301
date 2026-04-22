@@ -186,14 +186,6 @@ bool UserManager::changePassword(const std::string& userID, const std::string& n
     return true;
 }
 
-bool UserManager::verifyPassword(const std::string& userID, const std::string& password) const {
-    int index = findUser(userID);
-    if (index == -1) return false;
-
-    const User& user = users[index];
-    return user.getPassword() == password;
-}
-
 int UserManager::getCurrentPrivilege() const {
     if (currentUserID.empty()) return 0;
     return getUserPrivilege(currentUserID);

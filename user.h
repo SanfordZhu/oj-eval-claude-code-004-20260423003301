@@ -55,7 +55,6 @@ public:
     bool login(const std::string& userID, const std::string& password);
     bool logout();
     bool changePassword(const std::string& userID, const std::string& newPassword);
-    bool verifyPassword(const std::string& userID, const std::string& password) const;
 
     int getCurrentPrivilege() const;
     const std::string& getCurrentUserID() const { return currentUserID; }
